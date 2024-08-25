@@ -22,7 +22,7 @@ class CatFileCommand {
                 const folder = commitSHA.slice(0, 2); //1st 2 chars
                 const file = commitSHA.slice(2); //remaining forms the file
 
-                const completePath = path.join(process.cwd(), 'test-dir', "objects", folder, file); //cwd - currrent working dir --> hence path = cwd/.git/objects/82/997765646542fgxc
+                const completePath = path.join(process.cwd(), '.git', "objects", folder, file); //cwd - currrent working dir --> hence path = cwd/.git/objects/82/997765646542fgxc
 
                 if (!fs.existsSync(completePath)) //checks if the object exists inside the object dir.
                     throw new Error(`Not a valid object name ${commitSHA}`);
