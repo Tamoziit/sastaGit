@@ -1,0 +1,20 @@
+Git File Structure
+
+--> $ git init : cmd that initializes a .git dir under pwd.
+
+NB : <name>/ -->signifies folder, <name> signfies file
+.git/
+  |__ HEAD --> stores info about the current branch
+  |__ objects/ --> stores all commits. If commit id = 66rysfgsu14425, then it creates a folder structure as:
+  |     |__ 66/ (dir. of 1st 2 digits of the commit)
+  |        |__ rysfgsu14425 (file with filename - remaining digits of commit --> stores compressed data about the commit)
+  |__ refs/ --> stores ponters or tags to branches, configs, etc.
+  |__ config --> stores all config data of repo
+
+--> $ git hash-object <file> --> creates a Hash-object or blob file of the file provided.
+if used with -w flag --> it writes a directory with 1st 2 characters of SHA of the file & stores the blob file contents inside the dir. in a file, with filename of remaining SHA characters.
+
+eg: $ git hash-object config --> creates a hash "043110b5f5ab711230c68730edeba7e7d892c190"
+$ git hash-object -w config --> creates 04/3110b5f5ab711230c68730edeba7e7d892c190 structure
+3110b5f5ab711230c68730edeba7e7d892c190 file contains -->
+blob <size of the file provided>\0<actual contents of the file>
