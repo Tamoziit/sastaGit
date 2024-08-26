@@ -18,3 +18,13 @@ eg: $ git hash-object config --> creates a hash "043110b5f5ab711230c68730edeba7e
 $ git hash-object -w config --> creates 04/3110b5f5ab711230c68730edeba7e7d892c190 structure
 3110b5f5ab711230c68730edeba7e7d892c190 file contains -->
 blob <size of the file provided>\0<actual contents of the file>
+
+--> $ git ls-tree <commit-sha> --> shows the files & dirs. affected by a particular commit along with their permissions, hashes & types
+If used with "--name-only" flag, it displays only the affected files/folder names
+> Steps to achieve this -->
+Go to -->
+.git/
+  |__ objects/
+        |__sha[0..2]/
+              |__sha[2...n] file
+Once we get to this file > read the object file > decompress the file > We get a tree output > if flag provided then print only names, else print full tree structure
