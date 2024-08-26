@@ -27,4 +27,16 @@ Go to -->
   |__ objects/
         |__sha[0..2]/
               |__sha[2...n] file
-Once we get to this file > read the object file > decompress the file > We get a tree output > if flag provided then print only names, else print full tree structure
+Once we get to this file > read the object file > decompress the file > We get a tree output > if flag provided then print only names, else print full tree structure.
+
+Contents of a tree -->
+tree <size>\0
+<mode> <name>\0<20_byte_sha> //files under tree
+<mode> <name>\0<20_byte_sha>
+...& so on...
+
+--> $ git write-tree --> writes a tree at the pwd.
+> It iterates over all items in the pwd
+> If the item is a file, then it creates its blob & records its SHA.
+> If the item is a folder, then it recursively goes into the folder to create blobs & hashes for files & further trees for folders inside it (recursively).
+> Storing all these blobs & recursive trees inside .git/objects/
